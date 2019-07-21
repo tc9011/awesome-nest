@@ -4,6 +4,7 @@ import { AppModule } from './app.module'
 import { ValidationPipe } from './core/pipe/validation.pipe'
 import { TransformInterceptor } from './core/interceptor/transform.interceptor'
 import { ExceptionsFilter } from './core/filter/errors.filter'
+import config from './config'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
@@ -13,7 +14,7 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor())
   app.useGlobalPipes(new ValidationPipe())
 
-  await app.listen(3000)
+  await app.listen(config.port, config.hostName)
 }
 
 bootstrap()
