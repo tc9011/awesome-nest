@@ -1,8 +1,16 @@
 import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { CatEntity } from './cat.entity'
+import { Repository } from 'typeorm'
 
 @Injectable()
 export class CatsService {
-  getCat(id: string): string {
-    return `This action returns ${id} cats`
+  constructor(
+    @InjectRepository(CatEntity) private readonly catRepository: Repository<CatEntity>,
+  ) {
+  }
+
+  async getCat(id: number): Promise<CatEntity[]> {
+    return await this.catRepository.find({ id })
   }
 }

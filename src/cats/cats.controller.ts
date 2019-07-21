@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common'
 
 import { CatsService } from './cats.service'
 import { CreateCatDto } from './cat.dto'
+import { CatEntity } from './cat.entity'
 
 @Controller('cats')
 export class CatsController {
@@ -9,7 +10,7 @@ export class CatsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): string {
+  findOne(@Param('id') id: number): Promise<CatEntity[]> {
     return this.catsService.getCat(id)
   }
 
