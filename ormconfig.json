@@ -1,0 +1,19 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3310,
+  "username": "root",
+  "password": "123456",
+  "database": "test",
+  "entities": ["./**/*.entity.ts"],
+  "migrations": ["migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "migrations"
+  },
+  "timezone": "UTC",
+  "charset": "utf8mb4",
+  "multipleStatements": true,
+  "dropSchema": false,
+  "synchronize": false,
+  "logging": true
+}
