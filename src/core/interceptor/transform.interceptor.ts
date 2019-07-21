@@ -3,12 +3,12 @@ import {
   NestInterceptor,
   ExecutionContext,
   CallHandler,
-} from '@nestjs/common';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+} from '@nestjs/common'
+import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
 
 interface Response<T> {
-  data: T;
+  data: T
 }
 
 @Injectable()
@@ -24,9 +24,9 @@ export class TransformInterceptor<T>
             data: rawData,
             status: 0,
             message: '请求成功',
-          };
+          }
         },
       ),
-    );
+    )
   }
 }
