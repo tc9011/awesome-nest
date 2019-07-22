@@ -6,6 +6,7 @@ import { TransformInterceptor } from './core/interceptor/transform.interceptor'
 import { ExceptionsFilter } from './core/filter/errors.filter'
 import config from './config'
 import { logger } from './core/middleware/logger.middleware'
+import { Logger } from './shared/utils/logger'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
@@ -16,7 +17,11 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor())
   app.useGlobalPipes(new ValidationPipe())
 
-  await app.listen(config.port, config.hostName)
+  await app.listen(config.port, config.hostName, () => {
+    Logger.log(
+      `Awesome-nest API server has been started on http://${config.hostName}:${config.port}`,
+    )
+  })
 }
 
 bootstrap()

@@ -6,7 +6,7 @@ import productionConfig from './prod.config'
 const isProd = process.env.NODE_ENV === 'production'
 
 let config = {
-  port: 3300,
+  port: 3000,
   hostName: 'localhost',
 
   orm: {
