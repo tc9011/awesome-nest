@@ -8,9 +8,11 @@ import { CatEntity } from './features/cats/cat.entity'
 import { DogsController } from './features/dogs/dogs.controller';
 import { DogsService } from './features/dogs/dogs.service';
 import config from './config'
+import { DogEntity } from './features/dogs/dog.entity'
 
 const ENTITIES = [
   CatEntity,
+  DogEntity,
 ]
 
 @Module({
