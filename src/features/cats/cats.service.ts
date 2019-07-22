@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { CatEntity } from './cat.entity'
 import { Repository } from 'typeorm'
-import { Logger } from '../shared/utils/logger'
+import { Logger } from '../../shared/utils/logger'
 
 @Injectable()
 export class CatsService {
