@@ -5,6 +5,7 @@ import * as Util from 'util'
 import * as Moment from 'moment'
 import * as StackTrace from 'stacktrace-js'
 import Chalk from 'chalk'
+import { isProd } from '../../config'
 
 export enum LoggerLevel {
   ALL = 'ALL',
@@ -89,23 +90,55 @@ Log4js.addLayout('Awesome-nest', (logConfig: any) => {
   }
 })
 
-Log4js.configure({
-  appenders: {
-    console: {
-      type: 'stdout',
-      layout: { type: 'Awesome-nest' },
+if (isProd) {
+  Log4js.configure({
+    appenders: {
+      fileAppender: {
+        type: 'DateFile',
+        filename: './logs/prod.log',
+        pattern: '-yyyy-MM-dd.log',
+        alwaysIncludePattern: true,
+        layout: { type: 'Flash' },
+        daysToKeep: 60,
+      },
+      console: {
+        type: 'stdout',
+        layout: { type: 'Flash' },
+        level: 'info',
+      },
+      logLevelFilterAppender: {
+        type: 'logLevelFilter',
+        appender: 'fileAppender',
+        level: 'warn',
+      },
     },
-  },
-  categories: {
-    default: {
-      appenders: ['console'],
-      level: 'debug',
+    pm2: true,
+    disableClustering: true,
+    categories: {
+      default: {
+        appenders: ['logLevelFilterAppender', 'console'],
+        level: 'info',
+      },
     },
-  },
-})
+  })
+} else {
+  Log4js.configure({
+    appenders: {
+      console: {
+        type: 'stdout',
+        layout: { type: 'Flash' },
+      },
+    },
+    categories: {
+      default: {
+        appenders: ['console'],
+        level: 'debug',
+      },
+    },
+  })
+}
 
 const logger = Log4js.getLogger()
-logger.level = LoggerLevel.TRACE
 
 export class Logger {
   static trace(...args) {
@@ -154,37 +187,5 @@ export class Logger {
     const context: string = _.upperFirst(_.camelCase(basename))
 
     return new ContextTrace(context, fileName, lineNumber, columnNumber)
-  }
-
-  trace(...args) {
-    logger.trace(Logger.getStackTrace(), ...args)
-  }
-
-  debug(...args) {
-    logger.debug(Logger.getStackTrace(), ...args)
-  }
-
-  log(...args) {
-    logger.info(Logger.getStackTrace(), ...args)
-  }
-
-  info(...args) {
-    logger.info(Logger.getStackTrace(), ...args)
-  }
-
-  warn(...args) {
-    logger.warn(Logger.getStackTrace(), ...args)
-  }
-
-  warning(...args) {
-    logger.warn(Logger.getStackTrace(), ...args)
-  }
-
-  error(...args) {
-    logger.error(Logger.getStackTrace(), ...args)
-  }
-
-  fatal(...args) {
-    logger.fatal(Logger.getStackTrace(), ...args)
   }
 }
