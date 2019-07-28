@@ -98,12 +98,12 @@ if (isProd) {
         filename: './logs/prod.log',
         pattern: '-yyyy-MM-dd.log',
         alwaysIncludePattern: true,
-        layout: { type: 'Flash' },
+        layout: { type: 'Awesome-nest' },
         daysToKeep: 60,
       },
       console: {
         type: 'stdout',
-        layout: { type: 'Flash' },
+        layout: { type: 'Awesome-nest' },
         level: 'info',
       },
       logLevelFilterAppender: {
@@ -126,7 +126,7 @@ if (isProd) {
     appenders: {
       console: {
         type: 'stdout',
-        layout: { type: 'Flash' },
+        layout: { type: 'Awesome-nest' },
       },
     },
     categories: {
