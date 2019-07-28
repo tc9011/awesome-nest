@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common'
 
 import { CatsService } from './cats.service'
 import { CreateCatDto } from './cat.dto'
@@ -10,12 +10,12 @@ export class CatsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number): Promise<CatEntity[]> {
+  findOne(@Param('id') id: string): Promise<CatEntity[]> {
     return this.catsService.getCat(id)
   }
 
   @Post()
   create(@Body() createCatDto: CreateCatDto) {
-    return 'This action adds a new cat'
+    return this.catsService.createCat(createCatDto)
   }
 }
