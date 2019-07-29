@@ -17,7 +17,7 @@ export class CatsService {
     return await this.catRepository.find({ id })
   }
 
-  async createCat(createCatDto: CreateCatDto) {
+  async createCat(createCatDto: CreateCatDto): Promise<void> {
     await this.catRepository.save(createCatDto)
   }
 }

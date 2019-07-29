@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common'
+import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post, UseInterceptors } from '@nestjs/common'
 
 import { CatsService } from './cats.service'
 import { CreateCatDto } from './cat.dto'
@@ -10,12 +10,13 @@ export class CatsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<CatEntity[]> {
+  @UseInterceptors(ClassSerializerInterceptor)
+  findOne(@Param('id') id: string): Promise<Array<Partial<CatEntity>>> {
     return this.catsService.getCat(id)
   }
 
   @Post()
-  create(@Body() createCatDto: CreateCatDto) {
+  create(@Body() createCatDto: CreateCatDto): Promise<void> {
     return this.catsService.createCat(createCatDto)
   }
 }
