@@ -1,10 +1,12 @@
 import { Entity, Column } from 'typeorm'
 
 import { CommonEntity } from '../../shared/entities/common.entity'
+import { Transform } from 'class-transformer'
 
 @Entity('cat')
 export class CatEntity extends CommonEntity {
   @Column({ length: 50 })
+  @Transform(value => `cat: ${value}`)
   name: string
 
   @Column()
