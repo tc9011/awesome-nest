@@ -12,7 +12,7 @@ export class CatsService {
   ) {
   }
 
-  async getCat(id: string): Promise<CatEntity[]> {
+  async getCat(id: string): Promise<Array<Partial<CatEntity>>> {
     Logger.info('id', id)
     return await this.catRepository.find({ id })
   }
