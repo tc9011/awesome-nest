@@ -12,7 +12,7 @@ import { logger } from './core/middleware/logger.middleware'
 import { Logger } from './shared/utils/logger'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule, { cors: true })
   app.setGlobalPrefix('api/v1')
 
   app.use(helmet())
