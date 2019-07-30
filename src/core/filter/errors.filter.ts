@@ -1,3 +1,4 @@
+import * as Youch from 'youch'
 import {
   Catch,
   ArgumentsHost,
@@ -6,6 +7,7 @@ import {
   HttpStatus,
 } from '@nestjs/common'
 import { Logger } from '../../shared/utils/logger'
+import { isProd } from '../../config'
 
 @Catch()
 export class ExceptionsFilter implements ExceptionFilter {
@@ -28,16 +30,36 @@ export class ExceptionsFilter implements ExceptionFilter {
       status: 1,
     }
 
-    const status = exception instanceof HttpException ?
-      exception.getStatus() :
-      HttpStatus.INTERNAL_SERVER_ERROR
+    if (exception instanceof HttpException) {
+      const status = exception.getStatus()
+      Logger.error(
+        `Catch http exception at ${request.method} ${request.url} ${status}`,
+      )
 
-    Logger.error(
-      `Catch http exception at ${request.method} ${request.url} ${status}`,
-    )
+      response.status(status)
+      response.header('Content-Type', 'application/json; charset=utf-8')
+      response.send(errorResponse)
+    } else {
+      if (!isProd) {
+        const youch = new Youch(exception, request)
 
-    response.status(status)
-    response.header('Content-Type', 'application/json; charset=utf-8')
-    response.send(errorResponse)
+        const html = await youch
+          .addLink(link => {
+            const url = `https://stackoverflow.com/search?q=${encodeURIComponent(
+              `[adonis.js] ${link.message}`,
+            )}`
+            return `<a href="${url}" target="_blank" title="Search on StackOverflow">Search StackOverflow</a>`
+          })
+          .toHTML()
+
+        response.type('text/html')
+        response.status(HttpStatus.INTERNAL_SERVER_ERROR)
+        response.send(html)
+      } else {
+        response.status(HttpStatus.INTERNAL_SERVER_ERROR)
+        response.header('Content-Type', 'application/json; charset=utf-8')
+        response.send(errorResponse)
+      }
+    }
   }
 }
