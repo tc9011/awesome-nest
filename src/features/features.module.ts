@@ -9,10 +9,12 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'
 import config from '../config'
 import { CatEntity } from './entities/cat.entity'
 import { DogEntity } from './entities/dog.entity'
+import { UserEntity } from './entities/user.entity'
 
 const ENTITIES = [
   CatEntity,
   DogEntity,
+  UserEntity,
 ]
 
 @Module({
