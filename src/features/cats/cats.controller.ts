@@ -2,7 +2,7 @@ import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post,
 
 import { CatsService } from './cats.service'
 import { CreateCatDto } from './cat.dto'
-import { CatEntity } from './cat.entity'
+import { CatEntity } from '../entities/cat.entity'
 
 @Controller('cats')
 export class CatsController {

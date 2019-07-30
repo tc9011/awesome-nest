@@ -1,6 +1,6 @@
 import { Entity, Column } from 'typeorm'
 
-import { CommonEntity } from '../../shared/entities/common.entity'
+import { CommonEntity } from './common.entity'
 import { Transform } from 'class-transformer'
 
 @Entity('cat')
