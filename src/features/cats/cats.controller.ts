@@ -1,10 +1,21 @@
-import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post, UseInterceptors } from '@nestjs/common'
+import {
+  Body,
+  ClassSerializerInterceptor,
+  Controller,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common'
 
 import { CatsService } from './cats.service'
 import { CreateCatDto } from './cat.dto'
 import { CatEntity } from '../entities/cat.entity'
+import { AuthGuard } from '@nestjs/passport'
 
 @Controller('cats')
+@UseGuards(AuthGuard())
 export class CatsController {
   constructor(private readonly catsService: CatsService) {
   }

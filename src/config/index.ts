@@ -25,6 +25,13 @@ let config = {
     synchronize: true,
     logging: true,
   },
+
+  jwt: {
+    secret: 'secretKey',
+    signOptions: {
+      expiresIn: 60 * 60 * 24 * 30,
+    },
+  },
 }
 
 if (isProd) {
