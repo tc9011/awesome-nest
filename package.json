@@ -35,6 +35,8 @@
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.9.1",
+    "express-rate-limit": "^5.0.0",
+    "helmet": "^3.20.0",
     "lodash": "^4.17.15",
     "log4js": "^4.5.1",
     "moment": "^2.24.0",
