@@ -22,7 +22,8 @@
     "migration:generate": "ts-node node_modules/.bin/typeorm migration:generate",
     "migration:create": "ts-node node_modules/.bin/typeorm migration:crteate",
     "migration:run": "ts-node node_modules/.bin/typeorm migration:run",
-    "migration:revert": "ts-node node_modules/.bin/typeorm migration:revert"
+    "migration:revert": "ts-node node_modules/.bin/typeorm migration:revert",
+    "commit": "git-cz"
   },
   "dependencies": {
     "@nestjs/common": "^6.0.0",
