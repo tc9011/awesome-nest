@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core'
+import { NestExpressApplication } from '@nestjs/platform-express'
 import * as rateLimit from 'express-rate-limit'
 import * as helmet from 'helmet'
+import { join } from 'path'
 
 import { AppModule } from './app.module'
 import config from './config'
@@ -11,8 +13,15 @@ import { ValidationPipe } from './core/pipe/validation.pipe'
 import { Logger } from './shared/utils/logger'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true })
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    cors: true,
+  })
+
   app.setGlobalPrefix('api/v1')
+
+  app.useStaticAssets(join(__dirname, '..', 'static'))
+  app.setBaseViewsDir(join(__dirname, '..', 'views'))
+  app.setViewEngine('hbs')
 
   app.use(helmet())
   app.use(

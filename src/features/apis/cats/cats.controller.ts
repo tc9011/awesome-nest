@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Render,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common'
@@ -19,6 +20,12 @@ import { CatsService } from './cats.service'
 @UseGuards(AuthGuard())
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
+
+  @Get('page')
+  @Render('catsPage')
+  getCatsPage(): Promise<any> {
+    return this.catsService.getCats()
+  }
 
   @Get(':id')
   @UseInterceptors(ClassSerializerInterceptor)

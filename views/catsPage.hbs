@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <style>
+        .table .default-td {
+            width: 200px;
+        }
+
+        .table tbody>tr:nth-child(2n-1) {
+            background-color: rgb(219, 212, 212);
+        }
+
+        .table tbody>tr:nth-child(2n) {
+            background-color: rgb(172, 162, 162);
+        }
+    </style>
+</head>
+<body>
+<p>{{ data.title }}</p>
+<table class="table">
+    <thead>
+    <tr>
+        <td class="id default-td">id</td>
+        <td class="name default-td">name</td>
+        <td class="age default-td">age</td>
+        <td class="breed default-td">breed</td>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each data.cats}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{age}}</td>
+            <td>{{breed}}</td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+</body>
+</html>

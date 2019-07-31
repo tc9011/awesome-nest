@@ -24,6 +24,14 @@ export class CatsService {
     return await this.catRepository.find({ id })
   }
 
+  async getCats(): Promise<any> {
+    const cats = await this.catRepository.find()
+    return {
+      cats,
+      title: 'Cats List',
+    }
+  }
+
   async createCat(createCatDto: CreateCatDto): Promise<void> {
     await this.catRepository.save(createCatDto)
   }
