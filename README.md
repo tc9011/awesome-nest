@@ -62,6 +62,12 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Migration
+
+``` bash
+npm run migration:run
+```
+
 ## Test
 
 ```bash
