@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { EntityManager, Repository } from 'typeorm'
 
 import { LunarCalendarService } from '../../../shared/services/lunar-calendar/lunar-calendar.service'
 import { Logger } from '../../../shared/utils/logger'
@@ -34,5 +34,9 @@ export class CatsService {
 
   async createCat(createCatDto: CreateCatDto): Promise<void> {
     await this.catRepository.save(createCatDto)
+  }
+
+  async deleteCat(name: string, manager: EntityManager): Promise<void> {
+    await manager.delete(CatEntity, { name })
   }
 }
