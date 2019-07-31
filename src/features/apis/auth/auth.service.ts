@@ -1,10 +1,11 @@
-import { JwtService } from '@nestjs/jwt'
 import { Injectable } from '@nestjs/common'
-import { UserEntity } from '../../entities/user.entity'
+import { JwtService } from '@nestjs/jwt'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { Token } from '../../interfaces/auth.interface'
+
 import config from '../../../config'
+import { UserEntity } from '../../entities/user.entity'
+import { Token } from '../../interfaces/auth.interface'
 
 @Injectable()
 export class AuthService {
@@ -12,8 +13,7 @@ export class AuthService {
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
     private readonly jwtService: JwtService,
-  ) {
-  }
+  ) {}
 
   createToken(email: string): Token {
     const accessToken = this.jwtService.sign({ email })

@@ -1,12 +1,13 @@
 import { Body, Controller, Post } from '@nestjs/common'
+
 import { AccountDto } from '../../dtos/account.dto'
-import { AccountService } from './account.service'
 import { Token } from '../../interfaces/auth.interface'
+
+import { AccountService } from './account.service'
 
 @Controller()
 export class AccountController {
-  constructor(private readonly accountService: AccountService) {
-  }
+  constructor(private readonly accountService: AccountService) {}
 
   // 注册
   @Post('signUp')

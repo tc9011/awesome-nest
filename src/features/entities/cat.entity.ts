@@ -1,7 +1,7 @@
-import { Entity, Column } from 'typeorm'
+import { Transform } from 'class-transformer'
+import { Column, Entity } from 'typeorm'
 
 import { CommonEntity } from './common.entity'
-import { Transform } from 'class-transformer'
 
 @Entity('cat')
 export class CatEntity extends CommonEntity {

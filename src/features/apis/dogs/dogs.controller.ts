@@ -2,6 +2,7 @@ import { ClassSerializerInterceptor, Controller, UseInterceptors } from '@nestjs
 import { Crud, CrudController } from '@nestjsx/crud'
 
 import { DogEntity } from '../../entities/dog.entity'
+
 import { DogsService } from './dogs.service'
 
 @Crud({

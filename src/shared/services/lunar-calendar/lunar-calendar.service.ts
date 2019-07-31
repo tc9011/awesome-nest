@@ -4,12 +4,9 @@ import { map } from 'rxjs/operators'
 
 @Injectable()
 export class LunarCalendarService {
-  constructor(private readonly httpService: HttpService) {
-  }
+  constructor(private readonly httpService: HttpService) {}
 
   getLunarCalendar(): Observable<any> {
-    return this.httpService.get('https://www.sojson.com/open/api/lunar/json.shtml').pipe(
-      map(res => res.data.data),
-    )
+    return this.httpService.get('https://www.sojson.com/open/api/lunar/json.shtml').pipe(map(res => res.data.data))
   }
 }

@@ -1,10 +1,11 @@
-import * as _ from 'lodash'
-import * as Path from 'path'
-import * as Log4js from 'log4js'
-import * as Util from 'util'
-import * as Moment from 'moment'
-import * as StackTrace from 'stacktrace-js'
 import Chalk from 'chalk'
+import * as _ from 'lodash'
+import * as Log4js from 'log4js'
+import * as Moment from 'moment'
+import * as Path from 'path'
+import * as StackTrace from 'stacktrace-js'
+import * as Util from 'util'
+
 import { isProd } from '../../config'
 
 export enum LoggerLevel {
@@ -30,8 +31,8 @@ export class ContextTrace {
 
 Log4js.addLayout('Awesome-nest', (logConfig: any) => {
   return (logEvent: Log4js.LoggingEvent): string => {
-    let moduleName: string = ''
-    let position: string = ''
+    let moduleName = ''
+    let position = ''
 
     const messageList: string[] = []
     logEvent.data.forEach((value: any) => {
@@ -52,16 +53,10 @@ Log4js.addLayout('Awesome-nest', (logConfig: any) => {
 
     const messageOutput: string = messageList.join(' ')
     const positionOutput: string = position ? ` [${position}]` : ''
-    const typeOutput: string = `[${
-      logConfig.type
-    }] ${logEvent.pid.toString()}   - `
-    const dateOutput: string = `${Moment(logEvent.startTime).format(
-      'YYYY-MM-DD HH:mm:ss',
-    )}`
-    const moduleOutput: string = moduleName
-      ? `[${moduleName}] `
-      : '[LoggerService] '
-    let levelOutput: string = `[${logEvent.level}] ${messageOutput}`
+    const typeOutput = `[${logConfig.type}] ${logEvent.pid.toString()}   - `
+    const dateOutput = `${Moment(logEvent.startTime).format('YYYY-MM-DD HH:mm:ss')}`
+    const moduleOutput: string = moduleName ? `[${moduleName}] ` : '[LoggerService] '
+    let levelOutput = `[${logEvent.level}] ${messageOutput}`
 
     switch (logEvent.level.toString()) {
       case LoggerLevel.DEBUG:
@@ -84,9 +79,7 @@ Log4js.addLayout('Awesome-nest', (logConfig: any) => {
         break
     }
 
-    return `${Chalk.green(typeOutput)}${dateOutput}    ${Chalk.yellow(
-      moduleOutput,
-    )}${levelOutput}${positionOutput}`
+    return `${Chalk.green(typeOutput)}${dateOutput}    ${Chalk.yellow(moduleOutput)}${levelOutput}${positionOutput}`
   }
 })
 

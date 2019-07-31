@@ -1,7 +1,7 @@
-import { BeforeInsert, Column, Entity } from 'typeorm'
+import * as bcrypt from 'bcryptjs'
 import { Exclude } from 'class-transformer'
 import { IsEmail } from 'class-validator'
-import * as bcrypt from 'bcryptjs'
+import { BeforeInsert, Column, Entity } from 'typeorm'
 
 import { CommonEntity } from './common.entity'
 
