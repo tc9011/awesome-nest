@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common'
-import { AccountDto } from './account.dto'
+import { AccountDto } from '../../dtos/account.dto'
 import { JwtService } from '@nestjs/jwt'
 import { InjectRepository } from '@nestjs/typeorm'
-import { UserEntity } from '../entities/user.entity'
+import { UserEntity } from '../../entities/user.entity'
 import { Repository } from 'typeorm'
 import { AuthService } from '../auth/auth.service'
-import { Token } from '../auth/auth.interface'
+import { Token } from '../../interfaces/auth.interface'
 
 @Injectable()
 export class AccountService {

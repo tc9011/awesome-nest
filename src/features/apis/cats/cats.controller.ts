@@ -10,8 +10,8 @@ import {
 } from '@nestjs/common'
 
 import { CatsService } from './cats.service'
-import { CreateCatDto } from './cat.dto'
-import { CatEntity } from '../entities/cat.entity'
+import { CreateCatDto } from '../../dtos/cat.dto'
+import { CatEntity } from '../../entities/cat.entity'
 import { AuthGuard } from '@nestjs/passport'
 
 @Controller('cats')
