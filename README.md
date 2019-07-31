@@ -34,6 +34,21 @@
 $ npm install
 ```
 
+## MySQL
+* run mysql
+
+```bash
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d -p 3310:3306 mysql:8.0.0
+```
+
+* create mysql database
+
+```bash
+# password: 123456
+  mysql -h 127.0.0.1 -uroot  -P 3310 -p
+  CREATE DATABASE IF NOT EXISTS test CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+```
+
 ## Running the app
 
 ```bash
