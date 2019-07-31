@@ -10,13 +10,16 @@ import { CatEntity } from '../../entities/cat.entity'
 @Injectable()
 export class CatsService {
   constructor(
-    @InjectRepository(CatEntity) private readonly catRepository: Repository<CatEntity>,
+    @InjectRepository(CatEntity)
+    private readonly catRepository: Repository<CatEntity>,
     private readonly lunarCalendarService: LunarCalendarService,
   ) {}
 
   async getCat(id: string): Promise<Partial<CatEntity>[]> {
     Logger.info('id', id)
-    const lunarCalendar = await this.lunarCalendarService.getLunarCalendar().toPromise()
+    const lunarCalendar = await this.lunarCalendarService
+      .getLunarCalendar()
+      .toPromise()
     Logger.log(lunarCalendar)
     return await this.catRepository.find({ id })
   }

@@ -1,4 +1,8 @@
-import { ClassSerializerInterceptor, Controller, UseInterceptors } from '@nestjs/common'
+import {
+  ClassSerializerInterceptor,
+  Controller,
+  UseInterceptors,
+} from '@nestjs/common'
 import { Crud, CrudController } from '@nestjsx/crud'
 
 import { DogEntity } from '../../entities/dog.entity'

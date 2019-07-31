@@ -1,4 +1,10 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common'
+import {
+  ArgumentsHost,
+  Catch,
+  ExceptionFilter,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common'
 import * as Youch from 'youch'
 
 import { isProd } from '../../config'
@@ -27,7 +33,9 @@ export class ExceptionsFilter implements ExceptionFilter {
 
     if (exception instanceof HttpException) {
       const status = exception.getStatus()
-      Logger.error(`Catch http exception at ${request.method} ${request.url} ${status}`)
+      Logger.error(
+        `Catch http exception at ${request.method} ${request.url} ${status}`,
+      )
 
       response.status(status)
       response.header('Content-Type', 'application/json; charset=utf-8')
@@ -38,7 +46,9 @@ export class ExceptionsFilter implements ExceptionFilter {
 
         const html = await youch
           .addLink(link => {
-            const url = `https://stackoverflow.com/search?q=${encodeURIComponent(`[adonis.js] ${link.message}`)}`
+            const url = `https://stackoverflow.com/search?q=${encodeURIComponent(
+              `[adonis.js] ${link.message}`,
+            )}`
             return `<a href="${url}" target="_blank" title="Search on StackOverflow">Search StackOverflow</a>`
           })
           .toHTML()

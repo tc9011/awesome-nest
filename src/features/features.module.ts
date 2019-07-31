@@ -27,7 +27,13 @@ const ENTITIES = [CatEntity, DogEntity, UserEntity]
     JwtModule.register(config.jwt),
   ],
   controllers: [CatsController, DogsController, AccountController],
-  providers: [CatsService, DogsService, AuthService, JwtStrategy, AccountService],
+  providers: [
+    CatsService,
+    DogsService,
+    AuthService,
+    JwtStrategy,
+    AccountService,
+  ],
   exports: [],
 })
 export class FeaturesModule {}
