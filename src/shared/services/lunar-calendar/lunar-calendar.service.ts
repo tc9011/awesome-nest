@@ -1,6 +1,6 @@
 import { HttpService, Injectable } from '@nestjs/common'
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { of, Observable } from 'rxjs'
+import { catchError, map, timeout } from 'rxjs/operators'
 
 @Injectable()
 export class LunarCalendarService {
@@ -9,6 +9,10 @@ export class LunarCalendarService {
   getLunarCalendar(): Observable<any> {
     return this.httpService
       .get('https://www.sojson.com/open/api/lunar/json.shtml')
-      .pipe(map(res => res.data.data))
+      .pipe(
+        map(res => res.data.data),
+        timeout(5000),
+        catchError(error => of(`Bad Promise: ${error}`)),
+      )
   }
 }
