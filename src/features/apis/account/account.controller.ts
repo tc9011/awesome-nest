@@ -1,10 +1,12 @@
 import { Body, Controller, Post } from '@nestjs/common'
+import { ApiImplicitBody, ApiUseTags } from '@nestjs/swagger'
 
 import { AccountDto } from '../../dtos/account.dto'
 import { Token } from '../../interfaces/auth.interface'
 
 import { AccountService } from './account.service'
 
+@ApiUseTags('account')
 @Controller()
 export class AccountController {
   constructor(private readonly accountService: AccountService) {}

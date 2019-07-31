@@ -10,12 +10,15 @@ import {
   UseInterceptors,
 } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
+import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger'
 
 import { CreateCatDto } from '../../dtos/cat.dto'
 import { CatEntity } from '../../entities/cat.entity'
 
 import { CatsService } from './cats.service'
 
+@ApiUseTags('cats')
+@ApiBearerAuth()
 @Controller('cats')
 @UseGuards(AuthGuard())
 export class CatsController {
