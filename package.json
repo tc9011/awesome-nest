@@ -5,6 +5,9 @@
   "author": "",
   "license": "MIT",
   "scripts": {
+    "prod": "cross-env NODE_ENV=production pm2 start dist/main.js --name 'awesome-nest'",
+    "uat": "cross-env NODE_ENV=uat pm2 start dist/main.js --name 'awesome-nest'",
+    "stop": "pm2 delete awesome-nest",
     "build": "tsc -p tsconfig.build.json",
     "format": "prettier --config .prettierrc --write \"src/**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
