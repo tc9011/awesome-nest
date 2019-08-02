@@ -6,7 +6,7 @@ export default {
   orm: {
     type: 'mysql',
     host: 'localhost',
-    port: 3312,
+    port: 3310,
     username: 'root',
     password: '123456',
     database: 'test',

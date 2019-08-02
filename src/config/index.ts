@@ -16,7 +16,7 @@ let config = {
     username: 'root',
     password: '123456',
     database: 'test',
-    entities: [resolve(`./**/*.entity.ts`)],
+    entities: [resolve(`./**/*.entity${isProd ? '.js' : '.ts'}`)],
     migrations: ['migration/*.ts'],
     timezone: 'UTC',
     charset: 'utf8mb4',

@@ -6,7 +6,6 @@
   "license": "MIT",
   "scripts": {
     "prod": "cross-env NODE_ENV=production pm2 start dist/main.js --name 'awesome-nest'",
-    "uat": "cross-env NODE_ENV=uat pm2 start dist/main.js --name 'awesome-nest'",
     "stop": "pm2 delete awesome-nest",
     "build": "tsc -p tsconfig.build.json",
     "format": "prettier --config .prettierrc --write \"src/**/*.ts\"",
@@ -14,7 +13,7 @@
     "start:dev": "concurrently --handle-input \"wait-on dist/main.js && nodemon\" \"tsc -w -p tsconfig.build.json\" ",
     "start:debug": "nodemon --config nodemon-debug.json",
     "prestart:prod": "rimraf dist && npm run build",
-    "start:prod": "node dist/main.js",
+    "start:prod": "cross-env NODE_ENV=production node dist/main.js",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "lint:fix": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts' --fix",
     "test": "jest",
