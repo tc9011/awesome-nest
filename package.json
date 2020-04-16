@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "prod": "cross-env NODE_ENV=production pm2 start dist/main.js --name 'awesome-nest'",
+    "uat": "cross-env NODE_ENV=uat pm2 start dist/main.js --name 'awesome-nest'",
     "stop": "pm2 delete awesome-nest",
     "build": "tsc -p tsconfig.build.json",
     "format": "prettier --config .prettierrc --write \"src/**/*.ts\"",
@@ -60,6 +61,7 @@
   "devDependencies": {
     "@commitlint/cli": "^8.1.0",
     "@commitlint/config-conventional": "^8.1.0",
+    "@leo-tools/tslint-config-common": "^0.0.3",
     "@nestjs/testing": "^6.0.0",
     "@types/express": "^4.16.0",
     "@types/jest": "^23.3.13",

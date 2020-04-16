@@ -4,6 +4,7 @@ import { resolve } from 'path'
 import productionConfig from './prod.config'
 
 export const isProd = process.env.NODE_ENV === 'production'
+export const isUat = process.env.NODE_ENV === 'uat'
 
 let config = {
   port: 3000,
@@ -16,7 +17,7 @@ let config = {
     username: 'root',
     password: '123456',
     database: 'test',
-    entities: [resolve(`./**/*.entity${isProd ? '.js' : '.ts'}`)],
+    entities: [resolve(`./**/*.entity${isUat ? '.js' : '.ts'}`)],
     migrations: ['migration/*.ts'],
     timezone: 'UTC',
     charset: 'utf8mb4',
