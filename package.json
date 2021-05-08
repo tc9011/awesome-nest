@@ -55,7 +55,7 @@
     "rxjs": "^6.3.3",
     "stacktrace-js": "^2.0.0",
     "swagger-ui-express": "^4.0.7",
-    "typeorm": "^0.2.18",
+    "typeorm": "^0.2.25",
     "youch": "^2.0.10"
   },
   "devDependencies": {
